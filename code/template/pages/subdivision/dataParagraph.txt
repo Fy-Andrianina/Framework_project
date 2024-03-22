@@ -1,0 +1,2 @@
+<b className="text-muted">#dataLabel#:</b>
+<p>{{project.#dataLabel#}}</p>

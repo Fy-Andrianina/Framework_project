@@ -1,0 +1,26 @@
+<script>
+#import#
+   
+  export default {
+    name: '#project#',
+    components: {
+      LayoutDiv,
+    },
+    data() {
+      return {
+        projects:[]
+      };
+    },
+    created() {
+      this.fetchProjectList();
+    },
+    methods: {
+      fetchProjectList() {
+        #fetchProjectList#
+      },
+      handleDelete(id){
+        #handleDelete#
+      }
+    },
+  };
+  </script>

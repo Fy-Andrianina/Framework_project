@@ -1,0 +1,18 @@
+axios.get('#route#')
+          .then(response => {
+              this.projects = response.data.o;
+                      for (let i = 0; i < this.projects.length; i++) {
+            let obj = this.projects[i];
+          for (let key in obj) {
+              let value = obj[key];
+              if (typeof value === 'object' && value !== null) {
+                obj[key] = obj[key].label;
+              }
+
+    }
+}
+              return response
+          })
+          .catch(error => {
+            return error
+          });

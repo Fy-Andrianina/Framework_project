@@ -1,0 +1,7 @@
+<div class="form-group">
+    <label htmlFor="#dataLabel#">#dataLabel#</label>
+<select name="#dataLabel#" class="form-control" v-model="project.#dataLabel#.id">
+ <option :value="project.#dataLabel#.id">{{ project.#dataLabel#.label }}</option>
+   <option v-for="#dataLabel# in project.#dataLabel#s" :key="#dataLabel#.id" :value="#dataLabel#.id">{{ #dataLabel#.label }}</option>
+</select>
+</div>

@@ -1,0 +1,28 @@
+<script>
+#import# 
+ export default {
+   name: '#project#',
+   components: {
+     LayoutDiv,
+   },
+   data() {
+     return {
+                  formData:{
+        #dataLabel#
+      },
+       project: {
+         #dataLabel#
+       },
+       isSaving:false,
+     };
+   },
+   created() {
+    #create#
+   },
+   methods: {
+     handleSave() {
+    #handleSave#
+     },
+   },
+ };
+ </script>

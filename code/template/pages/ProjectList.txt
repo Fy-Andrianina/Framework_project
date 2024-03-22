@@ -1,0 +1,47 @@
+<template>
+    <layout-div>
+          <div class="container">
+              <h2 class="text-center mt-5 mb-3">Project Manager</h2>
+              <div class="card">
+                  <div class="card-header">
+                      <router-link to="/#dataLabel#Create"
+                          class="btn btn-outline-primary"
+                          >Create 
+                      </router-link>
+                  </div>
+                  <div class="card-body">
+               
+                      <table class="table table-bordered">
+                          <thead>
+                              <tr>
+                                  #dataLegend#
+                                  <th width="240px">Action</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                               
+                              <tr v-for="project in projects" :key="project.id">
+                                #data#
+                                  <td>
+                                  #routeLink#
+                                      <button 
+                                          @click="handleDelete(project.id)"
+                                          className="btn btn-outline-danger mx-1">
+                                          Delete
+                                      </button>
+                                  </td>
+                              </tr>
+                                   
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </layout-div>
+  </template>
+   #ProjectJS#
+      <style>
+.card{
+  margin-left: 250px;
+ }
+ </style>

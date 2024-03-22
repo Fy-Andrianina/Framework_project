@@ -1,0 +1,21 @@
+    // prends la valeur de l'id specifie dans l'url /api/:id
+     const id = this.$route.params.id;
+     
+     axios.get(`#routeCreate#`)
+     .then(response => {
+         let projectInfo = response.data.o[0]
+           let obj = projectInfo;for (let key in obj) {let value = obj[key];if (typeof value === 'object' && value !== null) {obj[key] = obj[key].label;} }
+         #datasVide#
+     
+          
+         return response
+     })
+     .catch(error => {
+         Swal.fire({
+             icon: 'error',
+             title: 'An Error Occured!',
+             showConfirmButton: false,
+             timer: 1500
+         })
+         return error
+     })

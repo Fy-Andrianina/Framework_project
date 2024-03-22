@@ -1,0 +1,9 @@
+<div class="form-group">
+    <label htmlFor="#dataLabel#">#dataLabel#</label>
+    <input 
+        v-model="project.#dataLabel#"
+        type="#dataType#"
+        class="form-control"
+        id="#dataLabel#"
+        name="#dataLabel#"/>
+</div>

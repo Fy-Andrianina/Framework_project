@@ -1,0 +1,26 @@
+         this.isSaving = true;
+         const formData = new FormData();
+        #formdata#
+         axios.post(`#route#`, formData)
+           .then(response => {
+             Swal.fire({
+                 icon: 'success',
+                 title: 'Project updated successfully!',
+                 showConfirmButton: false,
+                 timer: 1500
+             })
+             this.isSaving = false
+            #datas#
+            this.$router.push('/#classLabel#List');
+             return response
+           })
+           .catch(error => {
+             this.isSaving = false
+             Swal.fire({
+                 icon: 'error',
+                 title: 'An Error Occured!',
+                 showConfirmButton: false,
+                 timer: 1500
+             })
+             return error
+           });

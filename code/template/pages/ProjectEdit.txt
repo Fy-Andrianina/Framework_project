@@ -1,0 +1,31 @@
+<template>
+    <layout-div>
+         <h2 class="text-center mt-5 mb-3">Edit Project</h2>
+         <div class="card">
+             <div class="card-header">
+                 <router-link 
+                     class="btn btn-outline-info float-right"
+                     to="/">View All Projects
+                 </router-link>
+             </div>
+             <div class="card-body">
+                 <form>
+                   #data#
+                     <button 
+                         @click="handleSave()"
+                         :disabled="isSaving"
+                         type="button"
+                         class="btn btn-outline-primary mt-3">
+                         Save Project
+                     </button>
+                 </form>
+             </div>
+         </div>
+    </layout-div>
+ </template>
+#ProjectJS#
+    <style>
+.card{
+  margin-left: 250px;
+ }
+ </style>

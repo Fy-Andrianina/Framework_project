@@ -1,0 +1,23 @@
+<template>
+    <layout-div>
+         <h2 class="text-center mt-5 mb-3">Show Project</h2>
+         <div class="card">
+             <div class="card-header">
+                 <router-link 
+                     class="btn btn-outline-info float-right"
+                     to="/">View All Projects
+                 </router-link>
+             </div>
+             <div class="card-body">
+                #data#
+             </div>
+         </div>
+    </layout-div>
+ </template>
+  
+#ProjectJS#
+   <style>
+.card{
+  margin-left: 250px;
+ }
+ </style>
