@@ -1,0 +1,17 @@
+<template>
+<div class="container card">
+<h2>Bienvenue sur My_Test</h2>
+</div>
+</template>
+<script>
+export default {
+  name: 'WelcomeFile',
+}
+</script>
+   <style>
+.card{
+    margin-left: 250px;
+    margin: 20% 20% 20% 20%;
+    text-align: center;
+ }
+ </style>
