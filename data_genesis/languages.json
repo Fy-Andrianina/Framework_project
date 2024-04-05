@@ -67,10 +67,14 @@
                 "import eriq.flamework.annotations.Controller;",
                 "import eriq.flamework.annotations.Singleton;",
                 "import eriq.flamework.annotations.URLMapping;",
+                "import eriq.flamework.annotations.Authenticate;",
                 "import eriq.flamework.model.ModelRedirect;",
                 "import eriq.flamework.model.ModelView;",
                 "import eriq.flamework.model.ModelRest;",
+                "import eriq.flamework.model.ModelMethod;",
+                "import java.lang.reflect.Method;",
                 "import eriq.flamework.servlet.ServletEntity;",
+                "import eriq.flamework.servlet.SessionEntity;",
                 "import veda.godao.DAO;",
                 "import veda.godao.utils.DAOConnexion;",
                 "import java.sql.Connection;",
@@ -108,38 +112,61 @@
             "controllerMethods":[
                 {
                     "controllerMethodAnnotations":[
-                        "@URLMapping(\"insert[classNameMin].do\")"
+                        "@URLMapping(\"insert[classNameMin].do\")",
+                        "@Authenticate(\"admin\")"
                     ],
                     "controllerMethodParameter":"",
                     "controllerMethodContent":"flamework/controller/flameworkControllerInsert"
                 },
                 {
                     "controllerMethodAnnotations":[
-                        "@URLMapping(\"tocrud[classNameMin].do\")"
+                        "@URLMapping(\"tocrud[classNameMin].do\")",
+                        "@Authenticate(\"admin\")"
                     ],
                     "controllerMethodParameter":"",
                     "controllerMethodContent":"flamework/controller/flameworkControllerRead"
                 },
                 {
                     "controllerMethodAnnotations":[
-                        "@URLMapping(\"update[classNameMin].do\")"
+                        "@URLMapping(\"update[classNameMin].do\")",
+                        "@Authenticate(\"admin\")"
                     ],
                     "controllerMethodParameter":"",
                     "controllerMethodContent":"flamework/controller/flameworkControllerUpdate"
                 },
                 {
                     "controllerMethodAnnotations":[
-                        "@URLMapping(\"delete[classNameMin].do\")"
+                        "@URLMapping(\"delete[classNameMin].do\")",
+                        "@Authenticate(\"admin\")"
                     ],
                     "controllerMethodParameter":"",
                     "controllerMethodContent":"flamework/controller/flameworkControllerDelete"
                 },
                 {
                     "controllerMethodAnnotations":[
-                        "@URLMapping(\"readById[classNameMin].do\")"
+                        "@URLMapping(\"readById[classNameMin].do\")",
+                        "@Authenticate(\"admin\")"
                     ],
                     "controllerMethodParameter":"",
                     "controllerMethodContent":"flamework/controller/flameworkControlllerById"
+                }
+                
+            ],
+           
+            "controllerUserMethods":[
+                {
+                    "controllerMethodAnnotations":[
+                        "@URLMapping(\"login.do\")"
+                    ],
+                    "controllerMethodParameter":"",
+                    "controllerMethodContent":"flamework/controller/flameworkControllerLogin"
+                },
+                {
+                    "controllerMethodAnnotations":[
+                        "@URLMapping(\"logout.do\")"
+                    ],
+                    "controllerMethodParameter":"",
+                    "controllerMethodContent":"flamework/controller/flameworkControllerSignOut"
                 }
             ],
             "controllerSavepath":"[projectNameMaj]/src/[projectNameMin]/controllers",

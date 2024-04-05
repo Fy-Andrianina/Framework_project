@@ -1,0 +1,28 @@
+public ModelMethod login(ServletEntity entity) throws Exception{
+    [classNameMaj] o=new [classNameMaj]();
+
+    [controllerChangeInstanciation]
+   
+    try(Connection connex=DAOConnexion.getConnexion("[databaseDriver]", "[databaseSgbd]", "[databaseHost]", "[databasePort]", "[databaseName]", "[user]", "[pwd]", [databaseUseSSL], [databaseAllowKey])){
+        ModelMethod model = new ModelMethod();
+            Utilisateur[] obj = dao.select(connex, Utilisateur.class, o);
+            if (obj == null) {
+                throw new Exception("Verifier votre login ou mot de passe");
+            }
+            SessionEntity session = new SessionEntity();
+            session.getData().put("role", "admin");
+            session.getData().put("o", obj);
+
+            Class<?> modelClass = model.getClass();
+
+            // Récupérer la méthode setSessionEntity
+            Method setSessionEntityMethod = modelClass.getDeclaredMethod("setSessionEntity", SessionEntity.class);
+
+            setSessionEntityMethod.setAccessible(true);
+
+            setSessionEntityMethod.invoke(model, session);
+            
+       
+        return model;
+    }
+}
