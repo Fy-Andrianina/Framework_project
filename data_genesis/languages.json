@@ -112,40 +112,35 @@
             "controllerMethods":[
                 {
                     "controllerMethodAnnotations":[
-                        "@URLMapping(\"insert[classNameMin].do\")",
-                        "@Authenticate(\"admin\")"
+                        "@URLMapping(\"insert[classNameMin].do\")"
                     ],
                     "controllerMethodParameter":"",
                     "controllerMethodContent":"flamework/controller/flameworkControllerInsert"
                 },
                 {
                     "controllerMethodAnnotations":[
-                        "@URLMapping(\"tocrud[classNameMin].do\")",
-                        "@Authenticate(\"admin\")"
+                        "@URLMapping(\"tocrud[classNameMin].do\")"
                     ],
                     "controllerMethodParameter":"",
                     "controllerMethodContent":"flamework/controller/flameworkControllerRead"
                 },
                 {
                     "controllerMethodAnnotations":[
-                        "@URLMapping(\"update[classNameMin].do\")",
-                        "@Authenticate(\"admin\")"
+                        "@URLMapping(\"update[classNameMin].do\")"
                     ],
                     "controllerMethodParameter":"",
                     "controllerMethodContent":"flamework/controller/flameworkControllerUpdate"
                 },
                 {
                     "controllerMethodAnnotations":[
-                        "@URLMapping(\"delete[classNameMin].do\")",
-                        "@Authenticate(\"admin\")"
+                        "@URLMapping(\"delete[classNameMin].do\")"
                     ],
                     "controllerMethodParameter":"",
                     "controllerMethodContent":"flamework/controller/flameworkControllerDelete"
                 },
                 {
                     "controllerMethodAnnotations":[
-                        "@URLMapping(\"readById[classNameMin].do\")",
-                        "@Authenticate(\"admin\")"
+                        "@URLMapping(\"readById[classNameMin].do\")"
                     ],
                     "controllerMethodParameter":"",
                     "controllerMethodContent":"flamework/controller/flameworkControlllerById"
