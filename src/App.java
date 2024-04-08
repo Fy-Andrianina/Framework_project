@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import code.generation.Component;
+import extra.CreateUser;
 import genesis.Constantes;
 import genesis.Credentials;
 import genesis.CustomChanges;
@@ -69,6 +70,7 @@ public class App {
                         entityName = scanner.next();
                         credentials = new Credentials(databaseName, user, pwd, host, useSSL,
                                         allowPublicKeyRetrieval);
+
                         project = new File(projectName);
                         project.mkdir();
                         for (CustomFile c : language.getAdditionnalFiles()) {
@@ -112,6 +114,8 @@ public class App {
                                                 projectNameTagContent);
                         }
                         try (Connection connect = database.getConnexion(credentials)) {
+                                CreateUser.create(connect, Constantes.USER_SCRIPT); /////// iciiiii
+
                                 entities = database.getEntities(connect, credentials, entityName);
                                 for (int i = 0; i < entities.length; i++) {
                                         entities[i].initialize(connect, credentials, database, language);
