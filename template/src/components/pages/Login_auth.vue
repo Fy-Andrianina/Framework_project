@@ -5,18 +5,69 @@
     <div class="icon-lock"></div>
   </div>
   <h4>Login</h4>
+  <form @submit.prevent="handleSave">
   <div class="form-group">
-    <input class="form-control" required="required"/>
-    <label class="form-label">Username</label>
+    <input class="form-control" required="required"    v-model="formData.login"/>
+    <label class="form-label" >Username</label>
   </div>
   <div class="form-group">
-    <input class="form-control" type="password" required="required"/>
+    <input class="form-control" type="password" required="required"    v-model="formData.pwd"/>
     <label class="form-label">Password</label>
   </div><a href="#">Forgot Password ?</a>
-  <button class="floating-btn"><i class="icon-arrow"></i></button>
+  <button class="floating-btn" type="submit"><i class="icon-arrow"></i></button>
+</form>
 </div>
 </template>
 <script>
+
+import  axios from 'axios';
+
+import   Swal from 'sweetalert2';
+export default {
+
+  data() {
+    return {
+      formData:{
+        login: '',
+      pwd: '',
+      error: ''
+      }
+
+    };
+  },
+  methods: {
+   async handleSave() {
+               this.isSaving = true;
+         const formData = new FormData();
+        formData.append('login',this.formData.login);
+		formData.append('label',this.formData.pwd);
+		
+         axios.post(`Zaby/insertlivre.do`, formData)
+           .then(response => {
+             Swal.fire({
+                 icon: 'success',
+                 title: 'Project updated successfully!',
+                 showConfirmButton: false,
+                 timer: 1500
+             })
+             this.isSaving = false
+		
+            this.$router.push('/welcome');
+             return response
+           })
+           .catch(error => {
+             this.isSaving = false
+             Swal.fire({
+                 icon: 'error',
+                 title: 'An Error Occured!',
+                 showConfirmButton: false,
+                 timer: 1500
+             })
+             return error
+           });
+     },
+  }
+};
 </script>
 <style scoped>
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,100);

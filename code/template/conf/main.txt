@@ -15,7 +15,9 @@ axios.interceptors.request.use(function (config) {
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-   { path: '/', component: Login  },
+ 
+   { path: '/', component: Login   },
+   { path: '/welcome', component: WelcomeFile   },
     #path#
   ],
 });
