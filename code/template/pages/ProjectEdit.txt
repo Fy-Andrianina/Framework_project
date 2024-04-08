@@ -1,4 +1,6 @@
 <template>
+<div>
+    <SideBar/>
     <layout-div>
          <h2 class="text-center mt-5 mb-3">Edit Project</h2>
          <div class="card">
@@ -22,6 +24,7 @@
              </div>
          </div>
     </layout-div>
+</div>
  </template>
 #ProjectJS#
     <style>
