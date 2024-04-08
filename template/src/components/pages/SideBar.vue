@@ -42,6 +42,7 @@ export default {
   background: #000;
   padding: 30px 0px;
   position: fixed;
+  left: 20px;
 }
 
 .wrapper .sidebar h2{

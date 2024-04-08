@@ -5,9 +5,10 @@
     name: '#project#',
     components: {
       LayoutDiv,
+      SideBar,
     },
     data() {
-      return {
+    return {
         projects:[]
       };
     },

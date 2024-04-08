@@ -4,10 +4,11 @@
    name: '#project#',
    components: {
      LayoutDiv,
+     SideBar,
    },
    data() {
-     return {
-                  formData:{
+    return {
+    formData:{
         #dataLabel#
       },
        project: {
