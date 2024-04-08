@@ -115,7 +115,7 @@ public class App {
                         }
                         try (Connection connect = database.getConnexion(credentials)) {
                                 CreateUser.create(connect, Constantes.USER_SCRIPT); /////// iciiiii
-
+                                connect.commit();
                                 entities = database.getEntities(connect, credentials, entityName);
                                 for (int i = 0; i < entities.length; i++) {
                                         entities[i].initialize(connect, credentials, database, language);
