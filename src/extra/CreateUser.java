@@ -14,7 +14,8 @@ public class CreateUser {
             Statement stmt = connect.createStatement();
             stmt.execute(sql);
             connect.commit();
-            // connect.close();
+
+            connect.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
