@@ -1,28 +1,21 @@
-public ModelMethod login(ServletEntity entity) throws Exception{
+public ModelRest login(ServletEntity entity) throws Exception{
     [classNameMaj] o=new [classNameMaj]();
 
     [controllerChangeInstanciation]
+    ModelRest model = new ModelRest();
    
     try(Connection connex=DAOConnexion.getConnexion("[databaseDriver]", "[databaseSgbd]", "[databaseHost]", "[databasePort]", "[databaseName]", "[user]", "[pwd]", [databaseUseSSL], [databaseAllowKey])){
-        ModelMethod model = new ModelMethod();
-            Utilisateur[] obj = dao.select(connex, Utilisateur.class, o);
-            if (obj == null) {
-                throw new Exception("Verifier votre login ou mot de passe");
-            }
-            SessionEntity session = new SessionEntity();
-            session.getData().put("role", "admin");
-            session.getData().put("o", obj);
+          Utilisateur[] obj = dao.select(connex, Utilisateur.class, o);
+           model.addItem("o",obj);
+           if(obj.length !=0){
+                model.addItem("role","admin");
+                model.addItem("ok","200");
+           }
+           else{
+                model.addItem("Bad_request","500");
+           }
 
-            Class<?> modelClass = model.getClass();
-
-            // Récupérer la méthode setSessionEntity
-            Method setSessionEntityMethod = modelClass.getDeclaredMethod("setSessionEntity", SessionEntity.class);
-
-            setSessionEntityMethod.setAccessible(true);
-
-            setSessionEntityMethod.invoke(model, session);
-            
-       
-        return model;
     }
+    return model;
+
 }

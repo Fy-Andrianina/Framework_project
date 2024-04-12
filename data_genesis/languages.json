@@ -78,6 +78,7 @@
                 "import veda.godao.DAO;",
                 "import veda.godao.utils.DAOConnexion;",
                 "import java.sql.Connection;",
+                "import traite.Pagination;",
                 "import [projectNameMin].entities.[classNameMaj];"
             ],
             "controllerAnnotations":[
@@ -89,7 +90,7 @@
             "controllerFields":[
                 {
                     "controllerFieldAnnotations":[],
-                    "controllerFieldContent":"private DAO dao=new DAO(\"[databaseName]\", \"[databaseHost]\", \"[databasePort]\", \"[user]\", \"[pwd]\", [databaseUseSSL], [databaseID]);"
+                    "controllerFieldContent":"private DAO dao=new DAO(\"[databaseName]\", \"[databaseHost]\", \"[databasePort]\", \"[user]\", \"[pwd]\", [databaseUseSSL], [databaseID]);\nprivate Pagination service=new Pagination(\"[databaseName]\", \"[databaseHost]\", \"[databasePort]\", \"[user]\", \"[pwd]\", [databaseUseSSL], [databaseID]);"
                 }
             ],
             "controllerChangeInstanciation":{
@@ -104,7 +105,7 @@
                 "template":"o.set[fieldNameMaj](new [projectNameMin].entities.[foreignType]([content]));",
                 "value":"entity.getData().get(\"[fieldNameMin]\")"
             },
-            "controllerForeignList":"[projectNameMin].entities.[foreignType][] [foreignNameMin]=dao.select(connex, [projectNameMin].entities.[foreignType].class);\nmodel.addItem(\"[foreignNameMin]s\", [foreignNameMin]);",
+            "controllerForeignList":"[projectNameMin].entities.[foreignType][] [foreignNameMin]=service.select(connex, [projectNameMin].entities.[foreignType].class);\nmodel.addItem(\"[foreignNameMin]s\", [foreignNameMin]);",
             "controllerForeignContextParam" : "",
             "controllerForeignContextInstanciation" : "",
             "controllerConstructors":[],

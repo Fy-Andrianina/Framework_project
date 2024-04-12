@@ -8,8 +8,15 @@
               confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
               if (result.isConfirmed) {
-                  axios.delete(`#routeDelete#?id=${id}`)
+            const formData = new FormData();
+            if(sessionStorage.getItem('role') !=null){
+formData.append('role',sessionStorage.getItem('role'));
+ }
+                  axios.post(`#routeDelete#?id=${id}`,formData)
                   .then( response => {
+                                if(Object.keys(response.data).length === 0 ){
+              this.$router.push('/');
+            }
                       Swal.fire({
                           icon: 'success',
                           title: 'Project deleted successfully!',

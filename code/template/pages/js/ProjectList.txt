@@ -9,7 +9,10 @@
     },
     data() {
     return {
-        projects:[]
+      projects:[],
+      currentPage: 1,
+      itemsPerPage: 4, // Nombre d'éléments par page
+      totalPages: 0,
       };
     },
     created() {
@@ -17,8 +20,14 @@
     },
     methods: {
       fetchProjectList() {
+       
         #fetchProjectList#
       },
+          goToPage(pageNumber) {
+      console.log('goToPage called with pageNumber:', pageNumber);
+      this.currentPage = pageNumber;
+      this.fetchProjectList();
+    },
       handleDelete(id){
         #handleDelete#
       }

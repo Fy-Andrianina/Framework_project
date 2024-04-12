@@ -1,9 +1,14 @@
-public void insert(ServletEntity entity) throws Exception{
+public ModelRest insert(ServletEntity entity) throws Exception{
     [classNameMaj] o=new [classNameMaj]();
     [controllerChangeInstanciation]
-    try(Connection connex=DAOConnexion.getConnexion("[databaseDriver]", "[databaseSgbd]", "[databaseHost]", "[databasePort]", "[databaseName]", "[user]", "[pwd]", [databaseUseSSL], [databaseAllowKey])){
-        dao.insertWithoutPrimaryKey(connex, o);
-        connex.commit();
-       
+    ModelRest model=new ModelRest();
+    if(entity.getData().get("role")!=null){
+
+        try(Connection connex=DAOConnexion.getConnexion("[databaseDriver]", "[databaseSgbd]", "[databaseHost]", "[databasePort]", "[databaseName]", "[user]", "[pwd]", [databaseUseSSL], [databaseAllowKey])){
+            dao.insertWithoutPrimaryKey(connex, o);
+            connex.commit();
+            model.addItem("ok","200");
+        }
     }
+    return model;
 }

@@ -1,4 +1,6 @@
 <template>
+<div>
+    <SideBar/>
     <layout-div>
          <h2 class="text-center mt-5 mb-3">Create Project</h2>
          <div class="card">
@@ -54,6 +56,8 @@
              </div>
          </div>
     </layout-div>
+</div>
+
  </template>
  <script>
 
@@ -63,10 +67,13 @@ import   LayoutDiv from '../LayoutDiv.vue';
 
 import   Swal from 'sweetalert2';
 
+import   SideBar from './SideBar';
+
  export default {
    name: 'LivreCreate',
    components: {
      LayoutDiv,
+     SideBar,
    },
    data() {
      return {
@@ -92,9 +99,16 @@ import   Swal from 'sweetalert2';
       created() {
         // prends la valeur de l'id specifie dans l'url /api/:id
      
-     
-     axios.get(`/My_Test/tocrudlivre.do`)
+ const formData = new FormData();
+ if(sessionStorage.getItem('role') !=null){
+formData.append('role',sessionStorage.getItem('role'));
+ }
+
+     axios.post(`/Zaby/tocrudlivre.do`,formData)
      .then(response => {
+            if(Object.keys(response.data).length === 0 ){
+              this.$router.push('/');
+            }
          let projectInfo = response.data.o[0]
          
          this.project.id = projectInfo.id
@@ -124,14 +138,20 @@ import   Swal from 'sweetalert2';
      handleSave() {
                this.isSaving = true;
          const formData = new FormData();
+          if(sessionStorage.getItem('role') !=null){
+formData.append('role',sessionStorage.getItem('role'));
+ }
         formData.append('id',this.project.id);
 		formData.append('label',this.project.label);
 		formData.append('auteur',this.project.auteur.id);
 		formData.append('editeur',this.project.editeur.id);
 		formData.append('datePublication',this.project.datePublication);
 		
-         axios.post(`My_Test/insertlivre.do`, formData)
+         axios.post(`Zaby/insertlivre.do`, formData)
            .then(response => {
+                        if(Object.keys(response.data).length === 0 ){
+              this.$router.push('/');
+            }
              Swal.fire({
                  icon: 'success',
                  title: 'Project updated successfully!',

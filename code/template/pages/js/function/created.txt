@@ -1,8 +1,15 @@
     // prends la valeur de l'id specifie dans l'url /api/:id
      const id = this.$route.params.id;
-     
-     axios.get(`#routeCreate#`)
+ const formData = new FormData();
+ if(sessionStorage.getItem('role') !=null){
+formData.append('role',sessionStorage.getItem('role'));
+ }
+
+     axios.post(`#routeCreate#`,formData)
      .then(response => {
+            if(Object.keys(response.data).length === 0 ){
+              this.$router.push('/');
+            }
          let projectInfo = response.data.o[0]
            let obj = projectInfo;for (let key in obj) {let value = obj[key];if (typeof value === 'object' && value !== null) {obj[key] = obj[key].label;} }
          #datasVide#

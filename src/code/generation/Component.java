@@ -316,7 +316,7 @@ public class Component {
 
     // prends la l'url correspondant au paramatre
     public static HashMap<String, String> getFolder(String parameter) throws Exception {
-        String file = "E:\\TP\\Generate\\GenesisV2_Framework_Psql\\parametre.conf";
+        String file = "E:\\Framework_project\\parametre.conf";
         Properties props = new Properties();
         HashMap<String, String> properties = new HashMap<String, String>();
         try (FileInputStream fileInputStream = new FileInputStream(file)) {

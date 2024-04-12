@@ -40,20 +40,31 @@ export default {
                this.isSaving = true;
          const formData = new FormData();
         formData.append('login',this.formData.login);
-		formData.append('label',this.formData.pwd);
+		formData.append('pwd',this.formData.pwd);
 		
-         axios.post(`Zaby/insertlivre.do`, formData)
+         axios.post(`Zaby/login.do`, formData)
            .then(response => {
-             Swal.fire({
+            if(response.data.Bad_request!= null){
+              Swal.fire({
+                 icon: 'error',
+                 title: 'An Error Occured!',
+                 showConfirmButton: false,
+                 timer: 1500
+             })
+            }else{
+              Swal.fire({
                  icon: 'success',
                  title: 'Project updated successfully!',
                  showConfirmButton: false,
                  timer: 1500
              })
              this.isSaving = false
-		
+            
+             sessionStorage.setItem('role','admin');
             this.$router.push('/welcome');
              return response
+            }
+
            })
            .catch(error => {
              this.isSaving = false

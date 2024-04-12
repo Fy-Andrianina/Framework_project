@@ -1,4 +1,6 @@
 <template>
+<div>
+    <SideBar/>
     <layout-div>
          <h2 class="text-center mt-5 mb-3">Edit Project</h2>
          <div class="card">
@@ -31,6 +33,7 @@
              </div>
          </div>
     </layout-div>
+</div>
  </template>
 <script>
 
@@ -39,15 +42,18 @@ import  axios from 'axios';
 import   LayoutDiv from '../LayoutDiv.vue';
 
 import   Swal from 'sweetalert2';
+
+import   SideBar from './SideBar';
  
  export default {
    name: 'EditeurEdit',
    components: {
      LayoutDiv,
+     SideBar,
    },
    data() {
-     return {
-                  formData:{
+    return {
+    formData:{
         id: '',
 		label: '',
 		
@@ -63,9 +69,16 @@ import   Swal from 'sweetalert2';
    created() {
         // prends la valeur de l'id specifie dans l'url /api/:id
      const id = this.$route.params.id;
-     
-     axios.get(`/My_Test/readByIdediteur.do?id=${id}`)
+ const formData = new FormData();
+ if(sessionStorage.getItem('role') !=null){
+formData.append('role',sessionStorage.getItem('role'));
+ }
+
+     axios.post(`/Zaby/readByIdediteur.do?id=${id}`,formData)
      .then(response => {
+            if(Object.keys(response.data).length === 0 ){
+              this.$router.push('/');
+            }
          let projectInfo = response.data.o[0]
          
          this.project.id = projectInfo.id
@@ -89,11 +102,17 @@ import   Swal from 'sweetalert2';
      handleSave() {
              this.isSaving = true;
          const formData = new FormData();
+          if(sessionStorage.getItem('role') !=null){
+formData.append('role',sessionStorage.getItem('role'));
+ }
         formData.append('id',this.project.id);
 		formData.append('label',this.project.label);
 		
-         axios.post(`My_Test/updateediteur.do?id=${this.project.id}`, formData)
+         axios.post(`Zaby/updateediteur.do?id=${this.project.id}`, formData)
            .then(response => {
+                        if(Object.keys(response.data).length === 0 ){
+              this.$router.push('/');
+            }
              Swal.fire({
                  icon: 'success',
                  title: 'Project updated successfully!',

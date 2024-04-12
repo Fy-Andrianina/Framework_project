@@ -1,12 +1,26 @@
 public ModelRest crudpage(ServletEntity entity) throws Exception{
-    try(Connection connex=DAOConnexion.getConnexion("[databaseDriver]", "[databaseSgbd]", "[databaseHost]", "[databasePort]", "[databaseName]", "[user]", "[pwd]", [databaseUseSSL], [databaseAllowKey])){
-        ModelRest model=new ModelRest();
-        
-        [classNameMaj][] o=dao.select(connex, [classNameMaj].class);
-        model.addItem("viewpage", "[classNameMin].jsp");
-        model.addItem("title", "[classNameMaj]");
-        model.addItem("o", o);
-        [controllerForeignList]
-        return model;
+    ModelRest model=new ModelRest();
+
+    if(entity.getData().get("role")!=null){
+                int offset = 0;
+        if(entity.getData().get("offset") == null){
+            offset = 0;
+        }else{
+            offset = Integer.valueOf(entity.getData().get("offset"));
+        }
+        try(Connection connex=DAOConnexion.getConnexion("[databaseDriver]", "[databaseSgbd]", "[databaseHost]", "[databasePort]", "[databaseName]", "[user]", "[pwd]", [databaseUseSSL], [databaseAllowKey])){
+            
+        [classNameMaj][] o = service.select(connex, [classNameMaj].class, offset);
+        int pages = service.numRows(connex, [classNameMaj].class);
+        model.addItem("pages", pages);
+
+            model.addItem("viewpage", "[classNameMin].jsp");
+            model.addItem("title", "[classNameMaj]");
+            model.addItem("o", o);
+            [controllerForeignList]
+            
+        }
     }
+    return model;
+
 }

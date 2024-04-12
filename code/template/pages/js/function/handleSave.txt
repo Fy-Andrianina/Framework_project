@@ -1,8 +1,14 @@
          this.isSaving = true;
          const formData = new FormData();
+          if(sessionStorage.getItem('role') !=null){
+formData.append('role',sessionStorage.getItem('role'));
+ }
         #formdata#
          axios.post(`#route#`, formData)
            .then(response => {
+                        if(Object.keys(response.data).length === 0 ){
+              this.$router.push('/');
+            }
              Swal.fire({
                  icon: 'success',
                  title: 'Project updated successfully!',

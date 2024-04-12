@@ -1,4 +1,6 @@
 <template>
+<div>
+    <SideBar/>
     <layout-div>
           <div class="container">
               <h2 class="text-center mt-5 mb-3">Project Manager</h2>
@@ -43,8 +45,16 @@
                       </table>
                   </div>
               </div>
+                            <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center mt-4">
+        <li class="page-item" v-for="pageNumber in totalPages" :key="pageNumber">
+            <button class="page-link" @click="goToPage(pageNumber)">{{ pageNumber }}</button>
+        </li>
+    </ul>
+</nav>
           </div>
       </layout-div>
+</div>
   </template>
    <script>
 
@@ -54,15 +64,21 @@ import   LayoutDiv from '../LayoutDiv.vue';
 
 import   Swal from 'sweetalert2';
 
+import   SideBar from './SideBar';
+
    
   export default {
     name: 'EditeurList',
     components: {
       LayoutDiv,
+      SideBar,
     },
     data() {
-      return {
-        projects:[]
+    return {
+      projects:[],
+      currentPage: 1,
+      itemsPerPage: 4, // Nombre d'éléments par page
+      totalPages: 0,
       };
     },
     created() {
@@ -70,9 +86,19 @@ import   Swal from 'sweetalert2';
     },
     methods: {
       fetchProjectList() {
-        axios.get('My_Test/tocrudediteur.do')
+       
+         const formData = new FormData();
+ if(sessionStorage.getItem('role') !=null){
+formData.append('role',sessionStorage.getItem('role'));
+ }
+const offset = (this.currentPage - 1) * this.itemsPerPage;
+axios.post(`Zaby/tocrudediteur.do?offset=${offset}`,formData)
           .then(response => {
+                        if(Object.keys(response.data).length === 0 ){
+              this.$router.push('/');
+            }
               this.projects = response.data.o;
+               this.totalPages = Math.ceil(response.data.pages / this.itemsPerPage);
                       for (let i = 0; i < this.projects.length; i++) {
             let obj = this.projects[i];
           for (let key in obj) {
@@ -89,6 +115,11 @@ import   Swal from 'sweetalert2';
             return error
           });
       },
+          goToPage(pageNumber) {
+      console.log('goToPage called with pageNumber:', pageNumber);
+      this.currentPage = pageNumber;
+      this.fetchProjectList();
+    },
       handleDelete(id){
                   Swal.fire({
               title: 'Are you sure?',
@@ -100,8 +131,15 @@ import   Swal from 'sweetalert2';
               confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
               if (result.isConfirmed) {
-                  axios.delete(`/My_Test/deleteediteur.do?id=${id}`)
+            const formData = new FormData();
+            if(sessionStorage.getItem('role') !=null){
+formData.append('role',sessionStorage.getItem('role'));
+ }
+                  axios.post(`/Zaby/deleteediteur.do?id=${id}`,formData)
                   .then( response => {
+                                if(Object.keys(response.data).length === 0 ){
+              this.$router.push('/');
+            }
                       Swal.fire({
                           icon: 'success',
                           title: 'Project deleted successfully!',
@@ -129,5 +167,8 @@ import   Swal from 'sweetalert2';
       <style>
 .card{
   margin-left: 250px;
+ }
+ p{
+    color:black;
  }
  </style>

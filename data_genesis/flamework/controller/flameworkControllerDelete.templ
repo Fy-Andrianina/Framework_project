@@ -1,9 +1,16 @@
-public void delete(ServletEntity entity) throws Exception{
+public ModelRest delete(ServletEntity entity) throws Exception{
     [classNameMaj] where=new [classNameMaj]();
     [controllerWhereInstanciation]
-    try(Connection connex=DAOConnexion.getConnexion("[databaseDriver]", "[databaseSgbd]", "[databaseHost]", "[databasePort]", "[databaseName]", "[user]", "[pwd]", [databaseUseSSL], [databaseAllowKey])){
-        dao.delete(connex, where);
-        connex.commit();
-       
+    ModelRest model=new ModelRest();
+    if(entity.getData().get("role")!=null){
+        try(Connection connex=DAOConnexion.getConnexion("[databaseDriver]", "[databaseSgbd]", "[databaseHost]", "[databasePort]", "[databaseName]", "[user]", "[pwd]", [databaseUseSSL], [databaseAllowKey])){
+            dao.delete(connex, where);
+            connex.commit();
+        
+        }
+        model.addItem("ok","200");
+        
     }
+    return model;
+    
 }

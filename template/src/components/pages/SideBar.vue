@@ -1,11 +1,12 @@
 <template>
 <div class="wrapper">
     <div class="sidebar">
-    <router-link to="/"><h2>My_Test</h2></router-link>
+    <router-link to="/"><h2>Zaby</h2></router-link>
     <ul>
     <li><router-link to="/AuteurList"> auteur</router-link></li>
 		<li><router-link to="/LivreList"> livre</router-link></li>
 		<li><router-link to="/EditeurList"> editeur</router-link></li>
+		<li><router-link to="/UtilisateurList"> utilisateur</router-link></li>
 		
     </ul>
   </div>
@@ -42,7 +43,6 @@ export default {
   background: #000;
   padding: 30px 0px;
   position: fixed;
-  left: 20px;
 }
 
 .wrapper .sidebar h2{

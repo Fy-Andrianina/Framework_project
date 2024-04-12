@@ -1,6 +1,15 @@
-axios.get('#route#')
+ const formData = new FormData();
+ if(sessionStorage.getItem('role') !=null){
+formData.append('role',sessionStorage.getItem('role'));
+ }
+const offset = (this.currentPage - 1) * this.itemsPerPage;
+axios.post(`#route#?offset=${offset}`,formData)
           .then(response => {
+                        if(Object.keys(response.data).length === 0 ){
+              this.$router.push('/');
+            }
               this.projects = response.data.o;
+               this.totalPages = Math.ceil(response.data.pages / this.itemsPerPage);
                       for (let i = 0; i < this.projects.length; i++) {
             let obj = this.projects[i];
           for (let key in obj) {

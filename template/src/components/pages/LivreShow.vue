@@ -1,4 +1,6 @@
 <template>
+<div>
+    <SideBar/>
     <layout-div>
          <h2 class="text-center mt-5 mb-3">Show Project</h2>
          <div class="card">
@@ -23,6 +25,7 @@
              </div>
          </div>
     </layout-div>
+</div>
  </template>
   
 <script>
@@ -33,11 +36,14 @@ import   LayoutDiv from '../LayoutDiv.vue';
 
 import   Swal from 'sweetalert2';
 
+import   SideBar from './SideBar';
+
   
  export default {
    name: 'LivreShow',
    components: {
      LayoutDiv,
+     SideBar,
    },
    data() {
      return {
@@ -55,9 +61,16 @@ import   Swal from 'sweetalert2';
    created() {
          // prends la valeur de l'id specifie dans l'url /api/:id
      const id = this.$route.params.id;
-     
-     axios.get(`/My_Test/readByIdlivre.do?id=${id}`)
+ const formData = new FormData();
+ if(sessionStorage.getItem('role') !=null){
+formData.append('role',sessionStorage.getItem('role'));
+ }
+
+     axios.post(`/Zaby/readByIdlivre.do?id=${id}`,formData)
      .then(response => {
+            if(Object.keys(response.data).length === 0 ){
+              this.$router.push('/');
+            }
          let projectInfo = response.data.o[0]
            let obj = projectInfo;for (let key in obj) {let value = obj[key];if (typeof value === 'object' && value !== null) {obj[key] = obj[key].label;} }
          this.project.id = projectInfo.id
@@ -90,5 +103,6 @@ import   Swal from 'sweetalert2';
    <style>
 .card{
   margin-left: 250px;
+  color:black;
  }
  </style>

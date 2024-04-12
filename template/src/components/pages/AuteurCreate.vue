@@ -1,4 +1,6 @@
 <template>
+<div>
+    <SideBar/>
     <layout-div>
          <h2 class="text-center mt-5 mb-3">Create Project</h2>
          <div class="card">
@@ -31,6 +33,8 @@
              </div>
          </div>
     </layout-div>
+</div>
+
  </template>
  <script>
 
@@ -40,10 +44,13 @@ import   LayoutDiv from '../LayoutDiv.vue';
 
 import   Swal from 'sweetalert2';
 
+import   SideBar from './SideBar';
+
  export default {
    name: 'AuteurCreate',
    components: {
      LayoutDiv,
+     SideBar,
    },
    data() {
      return {
@@ -63,9 +70,16 @@ import   Swal from 'sweetalert2';
       created() {
         // prends la valeur de l'id specifie dans l'url /api/:id
      
-     
-     axios.get(`/My_Test/tocrudauteur.do`)
+ const formData = new FormData();
+ if(sessionStorage.getItem('role') !=null){
+formData.append('role',sessionStorage.getItem('role'));
+ }
+
+     axios.post(`/Zaby/tocrudauteur.do`,formData)
      .then(response => {
+            if(Object.keys(response.data).length === 0 ){
+              this.$router.push('/');
+            }
          let projectInfo = response.data.o[0]
          
          this.project.id = projectInfo.id
@@ -90,11 +104,17 @@ import   Swal from 'sweetalert2';
      handleSave() {
                this.isSaving = true;
          const formData = new FormData();
+          if(sessionStorage.getItem('role') !=null){
+formData.append('role',sessionStorage.getItem('role'));
+ }
         formData.append('id',this.project.id);
 		formData.append('label',this.project.label);
 		
-         axios.post(`My_Test/insertauteur.do`, formData)
+         axios.post(`Zaby/insertauteur.do`, formData)
            .then(response => {
+                        if(Object.keys(response.data).length === 0 ){
+              this.$router.push('/');
+            }
              Swal.fire({
                  icon: 'success',
                  title: 'Project updated successfully!',
