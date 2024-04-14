@@ -454,7 +454,16 @@ public class Component {
         }
 
     }
+    public void login_create(String pathTemplate,String projectName)throws Exception{
+        File template = new File(pathTemplate);
+        Scanner scanner = new Scanner(template);
+        scanner.useDelimiter("\\A");
+        String contenu = scanner.next();
 
+        contenu = contenu.replace("#path#", projectName);
+        this.createFile(  this.getFolder("path").get("path")+"login_auth.vue",
+            contenu);
+    }
     // cree le fichier main.js
     public void getMainJsContent() throws Exception {
 

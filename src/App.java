@@ -296,6 +296,8 @@ public class App {
                                         compo.setName("List");
                                         compo.setRoute();
                                         compo.createTemplate();
+                                        compo.login_create(Component.getFolder("loginTemplate")
+                                        .get("loginTemplate"),projectName);
 
                                         compo.getMainJsContent();
 
