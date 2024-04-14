@@ -2,8 +2,7 @@
 <div>
     <SideBar/>
     <layout-div>
-          <div class="container">
-              <h2 class="text-center mt-5 mb-3">Project Manager</h2>
+          <div class="conteneur">
               <div class="card">
                   <div class="card-header">
                       <router-link to="/LivreCreate"
@@ -22,7 +21,7 @@
 		<th>editeur</th>
 		<th>datePublication</th>
 		
-                                  <th width="240px">Action</th>
+                                  <th width="320px">Action</th>
                               </tr>
                           </thead>
                           <tbody>
@@ -50,7 +49,6 @@
                           </tbody>
                       </table>
                   </div>
-              </div>
                             <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center mt-4">
         <li class="page-item" v-for="pageNumber in totalPages" :key="pageNumber">
@@ -58,6 +56,7 @@
         </li>
     </ul>
 </nav>
+              </div>
           </div>
       </layout-div>
 </div>
@@ -98,7 +97,7 @@ import   SideBar from './SideBar';
 formData.append('role',sessionStorage.getItem('role'));
  }
 const offset = (this.currentPage - 1) * this.itemsPerPage;
-axios.post(`Zaby/tocrudlivre.do?offset=${offset}`,formData)
+axios.post(`Biblio/tocrudlivre.do?offset=${offset}`,formData)
           .then(response => {
                         if(Object.keys(response.data).length === 0 ){
               this.$router.push('/');
@@ -141,7 +140,7 @@ axios.post(`Zaby/tocrudlivre.do?offset=${offset}`,formData)
             if(sessionStorage.getItem('role') !=null){
 formData.append('role',sessionStorage.getItem('role'));
  }
-                  axios.post(`/Zaby/deletelivre.do?id=${id}`,formData)
+                  axios.post(`/Biblio/deletelivre.do?id=${id}`,formData)
                   .then( response => {
                                 if(Object.keys(response.data).length === 0 ){
               this.$router.push('/');
@@ -172,9 +171,30 @@ formData.append('role',sessionStorage.getItem('role'));
   </script>
       <style>
 .card{
-  margin-left: 250px;
+    DISPLAY: block;
+    HEIGHT: FIT-CONTENT;
+    width: 100vh;
  }
  p{
     color:black;
  }
+
+ table th::first-letter {
+  text-transform: uppercase; /* Met la première lettre en majuscule */
+}
+ table td::first-letter {
+  text-transform: uppercase; /* Met la première lettre en majuscule */
+}
+ .card-header{
+  background-color: #f9eded;
+ }
+ table {
+  border-collapse: collapse;
+  text-align: start;
+}
+.conteneur{
+        display: grid;
+    justify-items: stretch;
+}
+
  </style>

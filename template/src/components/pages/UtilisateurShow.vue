@@ -2,7 +2,6 @@
 <div>
     <SideBar/>
     <layout-div>
-         <h2 class="text-center mt-5 mb-3">Show Project</h2>
          <div class="card">
              <div class="card-header">
                  <router-link 
@@ -11,12 +10,12 @@
                  </router-link>
              </div>
              <div class="card-body">
-                <b className="text-muted">id:</b>
-<p>{{project.id}}</p>
-		<b className="text-muted">login:</b>
-<p>{{project.login}}</p>
-		<b className="text-muted">pwd:</b>
-<p>{{project.pwd}}</p>
+                <b className="text-muted"><span class="first-letter-uppercase">id:</span></b>
+<p class="first-letter-uppercase">{{project.id}}</p>
+		<b className="text-muted"><span class="first-letter-uppercase">login:</span></b>
+<p class="first-letter-uppercase">{{project.login}}</p>
+		<b className="text-muted"><span class="first-letter-uppercase">pwd:</span></b>
+<p class="first-letter-uppercase">{{project.pwd}}</p>
 		
              </div>
          </div>
@@ -60,7 +59,7 @@ import   SideBar from './SideBar';
 formData.append('role',sessionStorage.getItem('role'));
  }
 
-     axios.post(`/Zaby/readByIdutilisateur.do?id=${id}`,formData)
+     axios.post(`/Biblio/readByIdutilisateur.do?id=${id}`,formData)
      .then(response => {
             if(Object.keys(response.data).length === 0 ){
               this.$router.push('/');
@@ -92,7 +91,8 @@ formData.append('role',sessionStorage.getItem('role'));
  </script>
    <style>
 .card{
-  margin-left: 250px;
-  color:black;
+    DISPLAY: block;
+    HEIGHT: FIT-CONTENT;
+    color: black;
  }
  </style>

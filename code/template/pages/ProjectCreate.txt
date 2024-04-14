@@ -2,7 +2,6 @@
 <div>
     <SideBar/>
     <layout-div>
-         <h2 class="text-center mt-5 mb-3">Create Project</h2>
          <div class="card">
              <div class="card-header">
                  <router-link 
@@ -30,6 +29,7 @@
  #ProjectJS#
     <style>
 .card{
-  margin-left: 250px;
+    DISPLAY: block;
+    HEIGHT: FIT-CONTENT;
  }
  </style>

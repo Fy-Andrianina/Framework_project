@@ -1,2 +1,2 @@
-<b className="text-muted">#dataLabel#:</b>
-<p>{{project.#dataLabel#}}</p>
+<b className="text-muted"><span class="first-letter-uppercase">#dataLabel#:</span></b>
+<p class="first-letter-uppercase">{{project.#dataLabel#}}</p>

@@ -52,22 +52,22 @@ public class App {
                         language = languages[scanner.nextInt() - 1];
                         System.out.println("Enter your database credentials:");
                         System.out.print("Database name: ");
-                        databaseName = scanner.next();
+                        databaseName = "biblio";
                         System.out.print("Username: ");
-                        user = scanner.next();
+                        user = "postgres";
                         System.out.print("Password: ");
-                        pwd = scanner.next();
+                        pwd = "1767";
                         System.out.print("Database host: ");
-                        host = scanner.next();
+                        host = "localhost";
                         System.out.print("Use SSL ?(Y/n): ");
-                        useSSL = scanner.next().equalsIgnoreCase("Y");
+                        useSSL = false;
                         System.out.print("Allow public key retrieval ?(Y/n): ");
-                        allowPublicKeyRetrieval = scanner.next().equalsIgnoreCase("Y");
+                        allowPublicKeyRetrieval = true;
                         System.out.println();
                         System.out.print("Enter your project name: ");
-                        projectName = scanner.next();
+                        projectName = "Biblio";
                         System.out.print("Which entities to import ?(* to select all): ");
-                        entityName = scanner.next();
+                        entityName = "*";
                         credentials = new Credentials(databaseName, user, pwd, host, useSSL,
                                         allowPublicKeyRetrieval);
 
