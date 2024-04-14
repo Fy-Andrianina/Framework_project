@@ -225,6 +225,7 @@ html {
   font-size: 32px;
   border: none;
   position: absolute;
+  margin: auto;
   transition: 0.3s;
   box-shadow: 1px 0px 0px rgba(0, 0, 0, 0.3) inset;
   margin: auto;
