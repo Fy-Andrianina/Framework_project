@@ -2,7 +2,6 @@
 <div>
     <SideBar/>
     <layout-div>
-         <h2 class="text-center mt-5 mb-3">Edit Project</h2>
          <div class="card">
              <div class="card-header">
                  <router-link 
@@ -103,7 +102,7 @@ import   SideBar from './SideBar';
 formData.append('role',sessionStorage.getItem('role'));
  }
 
-     axios.post(`/Zaby/readByIdlivre.do?id=${id}`,formData)
+     axios.post(`/Biblio/readByIdlivre.do?id=${id}`,formData)
      .then(response => {
             if(Object.keys(response.data).length === 0 ){
               this.$router.push('/');
@@ -145,7 +144,7 @@ formData.append('role',sessionStorage.getItem('role'));
 		formData.append('editeur',this.project.editeur.id);
 		formData.append('datePublication',this.project.datePublication);
 		
-         axios.post(`Zaby/updatelivre.do?id=${this.project.id}`, formData)
+         axios.post(`Biblio/updatelivre.do?id=${this.project.id}`, formData)
            .then(response => {
                         if(Object.keys(response.data).length === 0 ){
               this.$router.push('/');
@@ -184,6 +183,7 @@ formData.append('role',sessionStorage.getItem('role'));
  </script>
     <style>
 .card{
-  margin-left: 250px;
+    DISPLAY: block;
+    HEIGHT: FIT-CONTENT;
  }
  </style>
