@@ -7,12 +7,14 @@
   <h4>Login</h4>
   <form @submit.prevent="handleSave">
   <div class="form-group">
-    <input class="form-control" required="required"    v-model="formData.login" placeholder="Username"/>
+    <input class="form-control" required="required"    v-model="formData.login"/>
+    <label class="form-label" >Username</label>
   </div>
   <div class="form-group">
-    <input class="form-control" type="password" required="required"    v-model="formData.pwd" placeholder="Password"/>
-  </div>
-  <button class="floating-btn" type="submit" style="margin: -20px; "><i class="icon-arrow"></i></button>
+    <input class="form-control" type="password" required="required"    v-model="formData.pwd"/>
+    <label class="form-label">Password</label>
+  </div><a href="#">Forgot Password ?</a>
+  <button class="floating-btn" type="submit"><i class="icon-arrow"></i></button>
 </form>
 </div>
 </template>
@@ -159,7 +161,6 @@ html {
   border-radius: 4px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   position: relative;
-  margin-top: 180px;  
 }
 .panel-lite h4 {
   font-weight: 400;
@@ -225,6 +226,7 @@ html {
   font-size: 32px;
   border: none;
   position: absolute;
+  margin: auto;
   transition: 0.3s;
   box-shadow: 1px 0px 0px rgba(0, 0, 0, 0.3) inset;
   margin: auto;

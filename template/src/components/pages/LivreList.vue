@@ -2,7 +2,7 @@
 <div>
     <SideBar/>
     <layout-div>
-          <div class="conteneur">
+          <div class="container">
               <div class="card">
                   <div class="card-header">
                       <router-link to="/LivreCreate"
@@ -21,7 +21,7 @@
 		<th>editeur</th>
 		<th>datePublication</th>
 		
-                                  <th width="320px">Action</th>
+                                  <th width="240px">Action</th>
                               </tr>
                           </thead>
                           <tbody>
@@ -49,6 +49,7 @@
                           </tbody>
                       </table>
                   </div>
+              </div>
                             <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center mt-4">
         <li class="page-item" v-for="pageNumber in totalPages" :key="pageNumber">
@@ -56,11 +57,10 @@
         </li>
     </ul>
 </nav>
-              </div>
           </div>
       </layout-div>
 </div>
-  </template>
+</template>
    <script>
 
 import  axios from 'axios';
@@ -171,30 +171,12 @@ formData.append('role',sessionStorage.getItem('role'));
   </script>
       <style>
 .card{
-    DISPLAY: block;
-    HEIGHT: FIT-CONTENT;
-    width: 100vh;
+  margin-left: 250px;
  }
- p{
-    color:black;
- }
-
- table th::first-letter {
-  text-transform: uppercase; /* Met la première lettre en majuscule */
-}
- table td::first-letter {
-  text-transform: uppercase; /* Met la première lettre en majuscule */
-}
- .card-header{
-  background-color: #f9eded;
- }
- table {
-  border-collapse: collapse;
-  text-align: start;
-}
-.conteneur{
-        display: grid;
-    justify-items: stretch;
-}
-
  </style>
+
+
+
+
+
+
