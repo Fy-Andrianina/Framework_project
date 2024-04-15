@@ -37,7 +37,7 @@ public class App {
                 String foreignContext;
                 String customChanges, changesFile;
                 String navLink, navLinkPath;
-                try (Scanner scanner = new Scanner(System.in)) {
+               try (Scanner scanner = new Scanner(System.in)) {
                         System.out.println("Choose a database engine:");
                         for (int i = 0; i < databases.length; i++) {
                                 System.out.println((i + 1) + ") " + databases[i].getNom());
@@ -52,22 +52,22 @@ public class App {
                         language = languages[scanner.nextInt() - 1];
                         System.out.println("Enter your database credentials:");
                         System.out.print("Database name: ");
-                        databaseName = "biblio";
+                        databaseName = scanner.next();
                         System.out.print("Username: ");
-                        user = "postgres";
+                        user = scanner.next();
                         System.out.print("Password: ");
-                        pwd = "1767";
+                        pwd = scanner.next();
                         System.out.print("Database host: ");
-                        host = "localhost";
+                        host = scanner.next();
                         System.out.print("Use SSL ?(Y/n): ");
-                        useSSL = false;
+                        useSSL = scanner.next().equalsIgnoreCase("Y");
                         System.out.print("Allow public key retrieval ?(Y/n): ");
-                        allowPublicKeyRetrieval = true;
+                        allowPublicKeyRetrieval = scanner.next().equalsIgnoreCase("Y");
                         System.out.println();
                         System.out.print("Enter your project name: ");
-                        projectName = "Biblio";
+                        projectName = scanner.next();
                         System.out.print("Which entities to import ?(* to select all): ");
-                        entityName = "*";
+                        entityName = scanner.next();
                         credentials = new Credentials(databaseName, user, pwd, host, useSSL,
                                         allowPublicKeyRetrieval);
 
