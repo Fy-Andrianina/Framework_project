@@ -178,17 +178,16 @@ formData.append('role',sessionStorage.getItem('role'));
    },
  };
  </script>
-    <style scoped>
+    <style>
 .card{
     DISPLAY: block;
-    left: 150px;
     HEIGHT: FIT-CONTENT;
+    left: 150px;
+    color: black;
  }
  .card{
   margin-top: 20px;
-    font-family: Courier, monospace;
+
  }
- *{
-      font-size: 11px;
- }
+
  </style>
