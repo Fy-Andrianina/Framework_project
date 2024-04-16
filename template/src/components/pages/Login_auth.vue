@@ -42,7 +42,7 @@ export default {
         formData.append('login',this.formData.login);
 		formData.append('pwd',this.formData.pwd);
 		
-         axios.post(`Biblio/login.do`, formData)
+         axios.post(`Zaby/login.do`, formData)
            .then(response => {
             if(response.data.Bad_request!= null){
               Swal.fire({

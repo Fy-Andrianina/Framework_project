@@ -1,7 +1,6 @@
 <template>
 <div>
     <SideBar/>
-    <layout-div>
          <div class="card">
              <div class="card-header">
                  <router-link 
@@ -19,15 +18,12 @@
 		
              </div>
          </div>
-    </layout-div>
 </div>
  </template>
   
 <script>
  
 import  axios from 'axios';
-
-import   LayoutDiv from '../LayoutDiv.vue';
 
 import   Swal from 'sweetalert2';
 
@@ -37,7 +33,6 @@ import   SideBar from './SideBar';
  export default {
    name: 'UtilisateurShow',
    components: {
-     LayoutDiv,
      SideBar,
    },
    data() {
@@ -59,7 +54,7 @@ import   SideBar from './SideBar';
 formData.append('role',sessionStorage.getItem('role'));
  }
 
-     axios.post(`/Biblio/readByIdutilisateur.do?id=${id}`,formData)
+     axios.post(`/Zaby/readByIdutilisateur.do?id=${id}`,formData)
      .then(response => {
             if(Object.keys(response.data).length === 0 ){
               this.$router.push('/');
@@ -89,10 +84,19 @@ formData.append('role',sessionStorage.getItem('role'));
    },
  };
  </script>
-   <style>
+   <style scoped>
 .card{
     DISPLAY: block;
     HEIGHT: FIT-CONTENT;
+    left: 150px;
     color: black;
  }
+ .card{
+  margin-top: 20px;
+    font-family: Courier, monospace;
+ }
+  *{
+      font-size: 11px;
+ }
+
  </style>

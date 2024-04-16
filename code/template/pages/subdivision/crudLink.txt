@@ -1,1 +1,1 @@
-<router-link :to="`/#routeLink#/${project.id}`" class="btn btn-outline-info mx-1">#routeLabel#</router-link>
+<router-link :to="`/#routeLink#/${project.id}`" class="btn btn-success mx-1">#routeLabel#</router-link>

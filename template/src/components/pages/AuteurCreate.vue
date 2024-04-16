@@ -1,7 +1,6 @@
 <template>
 <div>
     <SideBar/>
-    <layout-div>
          <div class="card">
              <div class="card-header">
                  <router-link 
@@ -31,15 +30,12 @@
                 </form>
              </div>
          </div>
-    </layout-div>
 </div>
 
  </template>
  <script>
 
 import  axios from 'axios';
-
-import   LayoutDiv from '../LayoutDiv.vue';
 
 import   Swal from 'sweetalert2';
 
@@ -48,7 +44,6 @@ import   SideBar from './SideBar';
  export default {
    name: 'AuteurCreate',
    components: {
-     LayoutDiv,
      SideBar,
    },
    data() {
@@ -74,7 +69,7 @@ import   SideBar from './SideBar';
 formData.append('role',sessionStorage.getItem('role'));
  }
 
-     axios.post(`/Biblio/tocrudauteur.do`,formData)
+     axios.post(`/Zaby/tocrudauteur.do`,formData)
      .then(response => {
             if(Object.keys(response.data).length === 0 ){
               this.$router.push('/');
@@ -109,7 +104,7 @@ formData.append('role',sessionStorage.getItem('role'));
         formData.append('id',this.project.id);
 		formData.append('label',this.project.label);
 		
-         axios.post(`Biblio/insertauteur.do`, formData)
+         axios.post(`Zaby/insertauteur.do`, formData)
            .then(response => {
                         if(Object.keys(response.data).length === 0 ){
               this.$router.push('/');
@@ -141,9 +136,17 @@ formData.append('role',sessionStorage.getItem('role'));
    },
  };
  </script>
-    <style>
+    <style scoped>
 .card{
     DISPLAY: block;
+    left: 150px;
     HEIGHT: FIT-CONTENT;
+ }
+ .card{
+  margin-top: 20px;
+    font-family: Courier, monospace;
+ }
+ *{
+      font-size: 11px;
  }
  </style>

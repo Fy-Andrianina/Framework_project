@@ -1,7 +1,6 @@
 <template>
 <div>
     <SideBar/>
-    <layout-div>
          <div class="card">
              <div class="card-header">
                  <router-link 
@@ -40,15 +39,12 @@
                 </form>
              </div>
          </div>
-    </layout-div>
 </div>
 
  </template>
  <script>
 
 import  axios from 'axios';
-
-import   LayoutDiv from '../LayoutDiv.vue';
 
 import   Swal from 'sweetalert2';
 
@@ -57,7 +53,6 @@ import   SideBar from './SideBar';
  export default {
    name: 'UtilisateurCreate',
    components: {
-     LayoutDiv,
      SideBar,
    },
    data() {
@@ -85,7 +80,7 @@ import   SideBar from './SideBar';
 formData.append('role',sessionStorage.getItem('role'));
  }
 
-     axios.post(`/Biblio/tocrudutilisateur.do`,formData)
+     axios.post(`/Zaby/tocrudutilisateur.do`,formData)
      .then(response => {
             if(Object.keys(response.data).length === 0 ){
               this.$router.push('/');
@@ -122,7 +117,7 @@ formData.append('role',sessionStorage.getItem('role'));
 		formData.append('login',this.project.login);
 		formData.append('pwd',this.project.pwd);
 		
-         axios.post(`Biblio/insertutilisateur.do`, formData)
+         axios.post(`Zaby/insertutilisateur.do`, formData)
            .then(response => {
                         if(Object.keys(response.data).length === 0 ){
               this.$router.push('/');
@@ -155,9 +150,17 @@ formData.append('role',sessionStorage.getItem('role'));
    },
  };
  </script>
-    <style>
+    <style scoped>
 .card{
     DISPLAY: block;
+    left: 150px;
     HEIGHT: FIT-CONTENT;
+ }
+ .card{
+  margin-top: 20px;
+    font-family: Courier, monospace;
+ }
+ *{
+      font-size: 11px;
  }
  </style>
