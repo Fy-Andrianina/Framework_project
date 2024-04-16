@@ -2,7 +2,7 @@
 <div>
     <SideBar/>
 <div class="container card">
-<h2>Biblio</h2>
+<h2>Zaby</h2>
 </div>
 </div>
 </template>

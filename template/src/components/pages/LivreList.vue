@@ -1,18 +1,17 @@
 <template>
 <div>
     <SideBar/>
-    <layout-div>
           <div class="container">
               <div class="card">
                   <div class="card-header">
                       <router-link to="/LivreCreate"
-                          class="btn btn-outline-primary"
+                          class="btn btn-warning "
                           >Create 
                       </router-link>
                   </div>
                   <div class="card-body">
                
-                      <table class="table table-bordered">
+                      <table class="table table-bordered mb-0">
                           <thead>
                               <tr>
                                   <th>id</th>
@@ -34,13 +33,12 @@
 		<td>{{project.datePublication}}</td>
 		
                                   <td>
-                                  <router-link :to="`/LivreEdit/${project.id}`" class="btn btn-outline-info mx-1">Edit</router-link>
-		<router-link :to="`/LivreShow/${project.id}`" class="btn btn-outline-info mx-1">Show</router-link>
-		<router-link :to="`/LivreCreate`" class="btn btn-outline-info mx-1">Create</router-link>
+                                  <router-link :to="`/LivreEdit/${project.id}`" class="btn btn-success mx-1">Edit</router-link>
+		<router-link :to="`/LivreShow/${project.id}`" class="btn btn-success mx-1">Show</router-link>
 		
                                       <button 
                                           @click="handleDelete(project.id)"
-                                          className="btn btn-outline-danger mx-1">
+                                          className="btn btn-danger mx-1">
                                           Delete
                                       </button>
                                   </td>
@@ -49,23 +47,20 @@
                           </tbody>
                       </table>
                   </div>
+                  <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center mt-1">
+                        <li class="page-item" v-for="pageNumber in totalPages" :key="pageNumber">
+                            <button class="page-link" @click="goToPage(pageNumber)">{{ pageNumber }}</button>
+                        </li>
+                    </ul>
+                </nav>
               </div>
-                            <nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center mt-4">
-        <li class="page-item" v-for="pageNumber in totalPages" :key="pageNumber">
-            <button class="page-link" @click="goToPage(pageNumber)">{{ pageNumber }}</button>
-        </li>
-    </ul>
-</nav>
-          </div>
-      </layout-div>
+        </div>
 </div>
 </template>
    <script>
 
 import  axios from 'axios';
-
-import   LayoutDiv from '../LayoutDiv.vue';
 
 import   Swal from 'sweetalert2';
 
@@ -75,7 +70,6 @@ import   SideBar from './SideBar';
   export default {
     name: 'LivreList',
     components: {
-      LayoutDiv,
       SideBar,
     },
     data() {
@@ -97,7 +91,7 @@ import   SideBar from './SideBar';
 formData.append('role',sessionStorage.getItem('role'));
  }
 const offset = (this.currentPage - 1) * this.itemsPerPage;
-axios.post(`Biblio/tocrudlivre.do?offset=${offset}`,formData)
+axios.post(`Zaby/tocrudlivre.do?offset=${offset}`,formData)
           .then(response => {
                         if(Object.keys(response.data).length === 0 ){
               this.$router.push('/');
@@ -140,7 +134,7 @@ axios.post(`Biblio/tocrudlivre.do?offset=${offset}`,formData)
             if(sessionStorage.getItem('role') !=null){
 formData.append('role',sessionStorage.getItem('role'));
  }
-                  axios.post(`/Biblio/deletelivre.do?id=${id}`,formData)
+                  axios.post(`/Zaby/deletelivre.do?id=${id}`,formData)
                   .then( response => {
                                 if(Object.keys(response.data).length === 0 ){
               this.$router.push('/');
@@ -169,9 +163,20 @@ formData.append('role',sessionStorage.getItem('role'));
     },
   };
   </script>
-      <style>
+      <style scoped>
 .card{
-  margin-left: 250px;
+  margin-top: 40px;
+    font-family: Courier, monospace;
+ }
+ .container{
+  margin-left: 200px;
+ }
+
+  *{
+      font-size: 11px;
+ }
+ .btn{
+    color:#fff;
  }
  </style>
 

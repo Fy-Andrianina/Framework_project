@@ -316,7 +316,7 @@ public class Component {
 
     // prends la l'url correspondant au paramatre
     public static HashMap<String, String> getFolder(String parameter) throws Exception {
-        String file = "D:\\ITU\\S6\\framework\\Framework_project\\parametre.conf";
+        String file = "E:\\Framework_project\\parametre.conf";
         Properties props = new Properties();
         HashMap<String, String> properties = new HashMap<String, String>();
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
@@ -514,13 +514,6 @@ public class Component {
         try {
             String ligne = this.ReadTemplate(path);
             for (String paths : this.getRoutesWithParam()) {
-                if (paths.contains(this.getData().getClassName()) == true) {
-                    templateSubdivisions = templateSubdivisions + this.generateRouteLink(paths, ligne)
-                            + "\n\t\t";
-                }
-
-            }
-            for (String paths : this.getRoutesWithoutParam()) {
                 if (paths.contains(this.getData().getClassName()) == true) {
                     templateSubdivisions = templateSubdivisions + this.generateRouteLink(paths, ligne)
                             + "\n\t\t";

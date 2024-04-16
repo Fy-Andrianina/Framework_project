@@ -1,7 +1,7 @@
 <template>
 <div class="wrapper">
     <div class="sidebar">
-    <router-link to="/"><h2>Biblio</h2></router-link>
+    <router-link to="/"><h2>Zaby</h2></router-link>
     <ul>
     <li><router-link to="/AuteurList"> auteur</router-link></li>
 		<li><router-link to="/LivreList"> livre</router-link></li>
@@ -24,7 +24,6 @@ export default {
 
 
 *{
-  margin: 0;
   padding: 0;
   box-sizing: border-box;
   list-style: none;
@@ -40,7 +39,6 @@ export default {
 .wrapper .sidebar{
   width: 250px;
   height: 100%;
-  background: #000;
   padding: 30px 0px;
   position: fixed;
 }
@@ -49,18 +47,21 @@ export default {
   color: #fff;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 30px;
 }
 
 .wrapper .sidebar ul li{
+  background-color: #fff;
+  font-weight: bold;
   padding: 15px;
-  border-bottom: 1px solid #bdb8d7;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgb(182, 182, 182);
+  /* border-top: 1px solid rgb(182, 182, 182); */
 }    
 
 .wrapper .sidebar ul li a{
-  color: #bdb8d7;
+  color: #141414;
+  font-size: medium;
+  font-family: Courier, monospace;
+  text-transform: uppercase;
   display: block;
 }
 
@@ -69,11 +70,11 @@ export default {
 }
 
 .wrapper .sidebar ul li:hover{
-  background-color: #7d777717;
+  border-bottom: 1px solid #FF4081;
 }
     
 .wrapper .sidebar ul li:hover a{
-  color: #fff;
+  color: #FF4081;
 }
  
 .wrapper .sidebar .social_media{
@@ -91,7 +92,6 @@ export default {
     background: transparent;
     line-height: 45px;
     text-align: center;
-    margin: 0 5px;
     color: #bdb8d7;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -100,18 +100,12 @@ export default {
 
 .wrapper  {
     padding: 20px; 
-    background: #000; 
-    color: #fff;
-    border-bottom: 1px solid #e0e4e8;
 }
 
 .wrapper {
-  margin: 20px;
-  color: #717171;
+  color: #1f1e1e;
   line-height: 25px;
 }
 
-.wrapper {
-  margin-bottom: 20px;
-}
+
 </style>

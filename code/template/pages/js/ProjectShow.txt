@@ -4,7 +4,6 @@
  export default {
    name: '#project#',
    components: {
-     LayoutDiv,
      SideBar,
    },
    data() {

@@ -1,7 +1,6 @@
 <template>
 <div>
     <SideBar/>
-    <layout-div>
          <div class="card">
              <div class="card-header">
                  <router-link 
@@ -22,13 +21,21 @@
                  </form>
              </div>
          </div>
-    </layout-div>
 </div>
  </template>
 #ProjectJS#
-    <style>
+    <style scoped>
 .card{
     DISPLAY: block;
+    left: 150px;
     HEIGHT: FIT-CONTENT;
  }
+.card{
+  margin-top: 20px;
+    font-family: Courier, monospace;
+ }
+ *{
+      font-size: 11px;
+ }
+
  </style>
