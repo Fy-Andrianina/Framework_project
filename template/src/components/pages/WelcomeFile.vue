@@ -3,6 +3,8 @@
     <SideBar/>
 <div class="container card">
 <h2>Zaby</h2>
+<h4>Welcome to our Framework</h4>
+<p>Vue.js  -  Java</p>
 </div>
 </div>
 </template>
@@ -20,14 +22,17 @@ export default {
    
     margin: 15% 20% 20% 20%;
     margin-left: 600px;
-    color: #FF4081;
     font-family: Courier, monospace;
     text-align: center;
     width: fit-content;
     border: none;
  }
 h2{
+  color: #FF4081;
   font-weight: bold;
   font-size: 70px;
+}
+p{
+  font-size: 12px;
 }
  </style>

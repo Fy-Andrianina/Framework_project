@@ -668,12 +668,7 @@ public class Component {
         this.createFile(this.getFolder("path").get("path") + "SideBar.vue", contenu);
     }
 
-    public void setWelcomeFile() throws Exception {
-        String filepath = this.getFolder("welcome_file").get("welcome_file");
-        String contenu = this.ReadTemplate(filepath);
-        contenu = contenu.replace("#titre#", this.getProjectName());
-        this.createFile(this.getFolder("path").get("path") + "WelcomeFile.vue", contenu);
-    }
+
     public static void deleteFilesInDirectory(Path directoryPath) throws IOException {
         // Vérifier si le chemin spécifié est un répertoire
         if (Files.isDirectory(directoryPath)) {
@@ -720,5 +715,11 @@ public class Component {
                 }
             }
         }
+    }
+    public void GenerateDefaultFile(String filename) throws Exception {
+        String filepath = this.getFolder(filename).get(filename);
+        String contenu = this.ReadTemplate(filepath);
+        contenu = contenu.replace("#Project#", this.getProjectName());
+        this.createFile(this.getFolder("path").get("path") + filename + ".vue", contenu);
     }
 }

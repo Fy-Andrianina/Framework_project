@@ -300,9 +300,6 @@ public class App {
                                         compo.setName("List");
                                         compo.setRoute();
                                         compo.createTemplate();
-                                        compo.login_create(Component.getFolder("loginTemplate")
-                                        .get("loginTemplate"),projectName);
-
                                         compo.getMainJsContent();
 
                                 }
@@ -347,7 +344,8 @@ public class App {
                                         }
                                 }
                                 compo.setLinkInMenu(links, paths);
-                                compo.setWelcomeFile();
+                                compo.GenerateDefaultFile("WelcomeFile");
+                                compo.GenerateDefaultFile("Login_auth");
                         }
                 }
                 Path source = Paths.get( compo.getFolder("template").get("template"));
@@ -355,7 +353,7 @@ public class App {
                 Path src=  Paths.get( compo.getFolder("src").get("src"));
                 try {
                     Component.copyFolder(source, destination);
-                //     Component.deleteFilesInDirectory(src);
+                    Component.deleteFilesInDirectory(src);
                     System.out.println("Le dossier a été copié avec succès.");
                 } catch (IOException e) {
                     System.out.println("Une erreur s'est produite lors de la copie du dossier : " + e.getMessage());
