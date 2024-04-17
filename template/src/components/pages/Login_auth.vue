@@ -60,7 +60,7 @@ export default {
              })
              this.isSaving = false
             
-             sessionStorage.setItem('role',response.data.role);
+             sessionStorage.setItem('role','admin');
             this.$router.push('/welcome');
              return response
             }

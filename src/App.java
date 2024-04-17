@@ -1,4 +1,7 @@
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -37,6 +40,7 @@ public class App {
                 String foreignContext;
                 String customChanges, changesFile;
                 String navLink, navLinkPath;
+                Component compo = new Component();
                try (Scanner scanner = new Scanner(System.in)) {
                         System.out.println("Choose a database engine:");
                         for (int i = 0; i < databases.length; i++) {
@@ -125,7 +129,7 @@ public class App {
                                 views = new String[entities.length];
                                 navLink = "";
 
-                                Component compo = new Component();
+                              
                                 compo.setProjectName(projectName);
                                 compo.getRoutesWithoutParam().add("WelcomeFile");
 
@@ -345,6 +349,16 @@ public class App {
                                 compo.setLinkInMenu(links, paths);
                                 compo.setWelcomeFile();
                         }
+                }
+                Path source = Paths.get( compo.getFolder("template").get("template"));
+                Path destination = Paths.get( compo.getFolder("path_view").get("path_view")+"/"+projectName+"_view");
+                Path src=  Paths.get( compo.getFolder("src").get("src"));
+                try {
+                    Component.copyFolder(source, destination);
+                //     Component.deleteFilesInDirectory(src);
+                    System.out.println("Le dossier a été copié avec succès.");
+                } catch (IOException e) {
+                    System.out.println("Une erreur s'est produite lors de la copie du dossier : " + e.getMessage());
                 }
         }
 }

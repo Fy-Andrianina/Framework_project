@@ -4,12 +4,18 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
+import genesis.Constantes;
 import genesis.Entity;
 import genesis.EntityField;
 
@@ -316,7 +322,7 @@ public class Component {
 
     // prends la l'url correspondant au paramatre
     public static HashMap<String, String> getFolder(String parameter) throws Exception {
-        String file = "E:\\Framework_project\\parametre.conf";
+        String file = Constantes.PARAMETRE_CONF;
         Properties props = new Properties();
         HashMap<String, String> properties = new HashMap<String, String>();
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
@@ -667,5 +673,52 @@ public class Component {
         String contenu = this.ReadTemplate(filepath);
         contenu = contenu.replace("#titre#", this.getProjectName());
         this.createFile(this.getFolder("path").get("path") + "WelcomeFile.vue", contenu);
+    }
+    public static void deleteFilesInDirectory(Path directoryPath) throws IOException {
+        // Vérifier si le chemin spécifié est un répertoire
+        if (Files.isDirectory(directoryPath)) {
+            // Parcourir les fichiers du répertoire
+            try (Stream<Path> paths = Files.walk(directoryPath)) {
+                paths.filter(Files::isRegularFile) // Filtrer les fichiers uniquement
+                     .forEach(file -> {
+                         try {
+                             // Supprimer chaque fichier
+                             Files.delete(file);
+                             System.out.println("Le fichier " + file + " a été supprimé.");
+                         } catch (IOException e) {
+                             System.err.println("Erreur lors de la suppression du fichier " + file + " : " + e.getMessage());
+                         }
+                     });
+            }
+        } else {
+            System.out.println("Le chemin spécifié n'est pas un répertoire.");
+        }
+
+    }
+    public static void copyFolder(Path source, Path destination) throws IOException {
+        // Vérifier si le chemin source est un dossier
+        if (!Files.isDirectory(source)) {
+            System.out.println("Le chemin source n'est pas un dossier.");
+            return;
+        }
+
+        // Créer le dossier de destination s'il n'existe pas
+        if (!Files.exists(destination)) {
+            Files.createDirectories(destination);
+        }
+
+        // Parcourir les éléments du dossier source
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(source)) {
+            for (Path entry : stream) {
+                Path target = destination.resolve(entry.getFileName());
+                // Si l'élément est un dossier, appeler récursivement copyFolder()
+                if (Files.isDirectory(entry)) {
+                    copyFolder(entry, target);
+                } else {
+                    // Copier le fichier
+                    Files.copy(entry, target, StandardCopyOption.REPLACE_EXISTING);
+                }
+            }
+        }
     }
 }

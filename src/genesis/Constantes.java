@@ -9,5 +9,6 @@ public class Constantes {
     public static final String CREDENTIAL_FILE = "credentials.json";
     public static final String MODEL_TEMPLATE_EXT = "templ";
     public static final String CONTROLLER_TEMPLATE_EXT = "templ";
+    public static final String PARAMETRE_CONF = "E:\\Framework_project\\parametre.conf";
     public static final String VIEW_TEMPLATE_EXT = "viewtempl";
 }
