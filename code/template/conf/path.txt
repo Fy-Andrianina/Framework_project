@@ -1,1 +1,1 @@
-{ path: '/#routePath#', component: #route#  },
+{ path: '/#routePath#', component: #route# ,meta:{requiresAuth:true}  },

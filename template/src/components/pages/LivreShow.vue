@@ -97,15 +97,16 @@ formData.append('role',sessionStorage.getItem('role'));
    <style scoped>
 .card{
     DISPLAY: block;
+    left: 500px;
+    top:100px;
     HEIGHT: FIT-CONTENT;
-    left: 150px;
-    color: black;
+    width: 500px;
  }
  .card{
   margin-top: 20px;
     font-family: Courier, monospace;
  }
-  *{
+ *{
       font-size: 11px;
  }
 

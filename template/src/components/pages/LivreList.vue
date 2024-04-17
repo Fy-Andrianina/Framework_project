@@ -167,9 +167,10 @@ formData.append('role',sessionStorage.getItem('role'));
 .card{
   margin-top: 40px;
     font-family: Courier, monospace;
+       width: 800px;
  }
  .container{
-  margin-left: 200px;
+  margin-left: 350px;
  }
 
   *{

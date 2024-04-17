@@ -15,10 +15,19 @@ export default {
     },
 }
 </script>
-   <style>
+   <style scoped>
 .card{
-    margin-left: 250px;
-    margin: 20% 20% 20% 20%;
+   
+    margin: 15% 20% 20% 20%;
+    margin-left: 600px;
+    color: #FF4081;
+    font-family: Courier, monospace;
     text-align: center;
+    width: fit-content;
+    border: none;
  }
+h2{
+  font-weight: bold;
+  font-size: 70px;
+}
  </style>

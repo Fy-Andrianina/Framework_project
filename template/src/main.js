@@ -34,26 +34,44 @@ const router = createRouter({
   routes: [
  
    { path: '/', component: Login   },
-   { path: '/welcome', component: WelcomeFile   },
-    { path: '/AuteurEdit/:id', component: AuteurEdit  },
-		{ path: '/AuteurShow/:id', component: AuteurShow  },
-		{ path: '/LivreEdit/:id', component: LivreEdit  },
-		{ path: '/LivreShow/:id', component: LivreShow  },
-		{ path: '/EditeurEdit/:id', component: EditeurEdit  },
-		{ path: '/EditeurShow/:id', component: EditeurShow  },
-		{ path: '/UtilisateurEdit/:id', component: UtilisateurEdit  },
-		{ path: '/UtilisateurShow/:id', component: UtilisateurShow  },
-		{ path: '/WelcomeFile', component: WelcomeFile  },
-		{ path: '/AuteurCreate', component: AuteurCreate  },
-		{ path: '/AuteurList', component: AuteurList  },
-		{ path: '/LivreCreate', component: LivreCreate  },
-		{ path: '/LivreList', component: LivreList  },
-		{ path: '/EditeurCreate', component: EditeurCreate  },
-		{ path: '/EditeurList', component: EditeurList  },
-		{ path: '/UtilisateurCreate', component: UtilisateurCreate  },
-		{ path: '/UtilisateurList', component: UtilisateurList  },
+   { path: '/welcome', component: WelcomeFile,meta:{requiresAuth:true} },
+    { path: '/AuteurEdit/:id', component: AuteurEdit ,meta:{requiresAuth:true}  },
+		{ path: '/AuteurShow/:id', component: AuteurShow ,meta:{requiresAuth:true}  },
+		{ path: '/LivreEdit/:id', component: LivreEdit ,meta:{requiresAuth:true}  },
+		{ path: '/LivreShow/:id', component: LivreShow ,meta:{requiresAuth:true}  },
+		{ path: '/EditeurEdit/:id', component: EditeurEdit ,meta:{requiresAuth:true}  },
+		{ path: '/EditeurShow/:id', component: EditeurShow ,meta:{requiresAuth:true}  },
+		{ path: '/UtilisateurEdit/:id', component: UtilisateurEdit ,meta:{requiresAuth:true}  },
+		{ path: '/UtilisateurShow/:id', component: UtilisateurShow ,meta:{requiresAuth:true}  },
+		{ path: '/WelcomeFile', component: WelcomeFile ,meta:{requiresAuth:true}  },
+		{ path: '/AuteurCreate', component: AuteurCreate ,meta:{requiresAuth:true}  },
+		{ path: '/AuteurList', component: AuteurList ,meta:{requiresAuth:true}  },
+		{ path: '/LivreCreate', component: LivreCreate ,meta:{requiresAuth:true}  },
+		{ path: '/LivreList', component: LivreList ,meta:{requiresAuth:true}  },
+		{ path: '/EditeurCreate', component: EditeurCreate ,meta:{requiresAuth:true}  },
+		{ path: '/EditeurList', component: EditeurList ,meta:{requiresAuth:true}  },
+		{ path: '/UtilisateurCreate', component: UtilisateurCreate ,meta:{requiresAuth:true}  },
+		{ path: '/UtilisateurList', component: UtilisateurList ,meta:{requiresAuth:true}  },
 		
   ],
 });
   
+
+
+router.beforeEach((to, from, next) => {
+    const isLoggedIn = sessionStorage.getItem('role');
+
+    if (to.path === '/' && isLoggedIn) {
+        next('/welcome');
+    } else if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (!isLoggedIn) {
+            next('/');
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
+});
+
 createApp(App).use(router).mount('#app');

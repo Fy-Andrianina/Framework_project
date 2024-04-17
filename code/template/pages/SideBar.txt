@@ -4,15 +4,33 @@
     #home_link#
     <ul>
     #router_link#
+     <li @click="confirmLogout"><router-link to="#"> Déconnexion </router-link></li>
     </ul>
   </div>
 </div>
 </template>
 
 <script>
+   import Swal from 'sweetalert2';
 export default {
   name: 'SideBar',
- 
+
+       methods: {
+        confirmLogout() {
+          Swal.fire({
+            title: 'Vous voulez vraiment vous déconnecter ?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Oui',
+            cancelButtonText: 'Non',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              sessionStorage.removeItem('role');
+              this.$router.push('/');
+            }
+          });
+        }
+      }
 }
 </script>
 

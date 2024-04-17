@@ -139,8 +139,10 @@ formData.append('role',sessionStorage.getItem('role'));
     <style scoped>
 .card{
     DISPLAY: block;
-    left: 150px;
+    left: 500px;
+    top:100px;
     HEIGHT: FIT-CONTENT;
+    width: 500px;
  }
  .card{
   margin-top: 20px;

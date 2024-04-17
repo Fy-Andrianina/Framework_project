@@ -17,9 +17,27 @@ const router = createRouter({
   routes: [
  
    { path: '/', component: Login   },
-   { path: '/welcome', component: WelcomeFile   },
+   { path: '/welcome', component: WelcomeFile,meta:{requiresAuth:true} },
     #path#
   ],
 });
   
+
+
+router.beforeEach((to, from, next) => {
+    const isLoggedIn = sessionStorage.getItem('role');
+
+    if (to.path === '/' && isLoggedIn) {
+        next('/welcome');
+    } else if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (!isLoggedIn) {
+            next('/');
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
+});
+
 createApp(App).use(router).mount('#app');
